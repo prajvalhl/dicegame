@@ -30,7 +30,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             scores[activePlayer] = 0;
             document.querySelector('#score-'+activePlayer).textContent = 0;
             nextPlayer();
-            alert('Uh oh! You rolled 2 sixes simultaneously. As a result, you will lose your ENTIRE score! And it\'s the Next Player\'s turn. If you have just started, then there\'s nothing to lose.');
+            twoSixAlert();
         } else if(dice !== 1){
             // Add score
             roundScore += dice;
@@ -38,7 +38,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         } else {
             // Next Player
             nextPlayer();
-            alert('Uh oh! You rolled a 1, As a result, your CURRENT score will be reset to 0, but your MAIN score is safe. And it\'s the Next Player\'s turn. If you have just started the round, then there\'s nothing to lose.');
+            oneAlert();
         }
     }
     
@@ -71,6 +71,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
         } else {
             // 4. Next player
             nextPlayer();
+            document.querySelector('.dice').style.display = 'none';
         }
     }
 });
@@ -82,7 +83,7 @@ function nextPlayer(){
     document.getElementById('current-1').textContent = '0';
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
-    document.querySelector('.dice').style.display = 'none';
+    //document.querySelector('.dice').style.display = 'none';
 }
 
 document.querySelector('.btn-new').addEventListener('click', newGame);
@@ -105,4 +106,48 @@ function newGame(){
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
     document.querySelector('.final-score').value = '';
+}
+
+function oneAlert(){
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-full-width",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+    
+    toastr["warning"]("Uh oh! You rolled a 1, As a result, your CURRENT score has been reset to 0, but your MAIN score is safe. And it's the Next Player's turn. If you have just started the round, then there's nothing to lose.")
+}
+
+function twoSixAlert(){
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-full-width",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+    
+    toastr["error"]("Uh oh! You rolled two 6's in a row. As a result, you have lost your ENTIRE score! And it's the Next Player's turn. If you have just started, then there's nothing to lose.")
 }
