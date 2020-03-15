@@ -22,7 +22,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         // 2. Display the result
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
-        diceDOM.src = 'dice-'+dice+'.png';
+        diceDOM.src = 'images/dice-'+dice+'.png';
 
         // 3. Update the round score IF the rolled number was NOT 1 or two 6's
         if(dice === 6 && lastDice === 6){
@@ -30,6 +30,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             scores[activePlayer] = 0;
             document.querySelector('#score-'+activePlayer).textContent = 0;
             nextPlayer();
+            alert('Uh oh! You rolled 2 sixes simultaneously. As a result, you have lost your ENTIRE score! And it\'ll be the Next Player\'s turn. If you have just started, then there\'s nothing to lose.');
         } else if(dice !== 1){
             // Add score
             roundScore += dice;
@@ -37,6 +38,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         } else {
             // Next Player
             nextPlayer();
+            alert('Uh oh! You rolled a 1, As a result, your round score has reset to Zero. And it\'ll be the Next Player\'s turn. If you have just started the round, then there\'s nothing to lose.');
         }
     }
     
