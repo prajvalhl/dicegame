@@ -6,3 +6,4 @@
 - The player can choose to **Hold**, which means that his ROUND score gets added to his MAIN score. After that, it's the next player's turn.
 - A Player can set the final winning score to any value they wish or not, in which case by default it'll be set to 100. 
 - The first player to reach winning score / 100 points on MAIN score wins the game.
+- some thing some thing blah blah blah
