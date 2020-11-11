@@ -41,7 +41,6 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             oneAlert();
         }
     }
-    
     lastDice = dice;
 });
 
@@ -72,6 +71,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
             // 4. Next player
             nextPlayer();
             document.querySelector('.dice').style.display = 'none';
+            lastDice = 0;
         }
     }
 });
